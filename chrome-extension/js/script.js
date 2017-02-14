@@ -1,16 +1,39 @@
 $(function () {
-  var $button    = $('<a class="dropdown-item header-color-button">Header color</a>');
-  var $container = $('<div id="colorpicker-container"></div>');
-  var $form      = $('<form id="colorform"><input type="text" id="color" name="color" value="#123456" /></form>');
-  var $picker    = $('<div id="colorpicker"></div>');
+  var $header = $('body > .header');
+  var $button = $('<a class="dropdown-item header-color-button">Header color</a>');
+  var $picker = $('<div id="colorpicker-container"><div id="colorpicker"></div></div>');
 
-  $container.append($form).append($picker);
-  $('body').append($container);
-  $('#colorpicker').farbtastic('#color');
+  var setHeaderColor = function (color) {
+    console.debug('setHeaderColor');
+    if (!color) { return; }
+    $header.css({ backgroundColor: color });
+  };
 
-  $('.dropdown-menu.dropdown-menu-sw').append($button);
+  var saveHeaderColor = function (color) {
+    localStorage.setItem('chrome-extension::github-color::header-color', color);
+  };
 
-  $(document).on('click', '.header-color-button', function () {
-    $container.toggle();
-  });
+  var loadHeaderColor = function () {
+    return localStorage.getItem('chrome-extension::github-color::header-color');
+  };
+
+  var colorChangeCallback = function (color) {
+    setHeaderColor(color);
+    saveHeaderColor(color);
+  };
+
+  var handleButtonClick = function () {
+    $picker.toggle();
+  };
+
+  $('body').append($picker);
+  $('.user-nav > li:last-child .dropdown-menu.dropdown-menu-sw')
+    .append('<div class="dropdown-divider"></div>')
+    .append($button);
+  $(document).on('click', '.header-color-button', handleButtonClick);
+
+  var initialColor = loadHeaderColor() || $header.css('backgroundColor');
+
+  $.farbtastic('#colorpicker', colorChangeCallback).setColor(initialColor);
+  setHeaderColor(initialColor);
 });

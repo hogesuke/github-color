@@ -15,7 +15,7 @@
       "matches": ["https://github.com/*"],
       "js"     : ["lib/jquery.min.js", "lib/farbtastic-1.3u/farbtastic.min.js", "js/script.js"],
       "css"    : ["css/style.css", "lib/farbtastic-1.3u/farbtastic.css"],
-      "run_at" : "document_end"
+      "run_at" : "document_start"
     }
 
   ],
