@@ -1,0 +1,18 @@
+#colorpicker-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 300px;
+  width: 300px;
+  background-color: red;
+  display: none;
+}
+
+#colorform {
+}
+
+#colorpicker {
+}

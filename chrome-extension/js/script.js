@@ -1,12 +1,16 @@
 $(function () {
-  var $button    = $('<a class="dropdown-item">Header color</a>');
-  var $form      = $('<form><input type="text" id="color" name="color" value="#123456" /></form>');
-  var $container = $('<div id="colorpicker"></div>');
+  var $button    = $('<a class="dropdown-item header-color-button">Header color</a>');
+  var $container = $('<div id="colorpicker-container"></div>');
+  var $form      = $('<form id="colorform"><input type="text" id="color" name="color" value="#123456" /></form>');
+  var $picker    = $('<div id="colorpicker"></div>');
+
+  $container.append($form).append($picker);
+  $('body').append($container);
+  $('#colorpicker').farbtastic('#color');
 
   $('.dropdown-menu.dropdown-menu-sw').append($button);
-  $('body').append($form).append($container);
 
-  $button.on('click', function () {
-    $('#colorpicker').farbtastic('#color');
+  $(document).on('click', '.header-color-button', function () {
+    $container.toggle();
   });
 });
