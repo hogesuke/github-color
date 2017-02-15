@@ -2,11 +2,13 @@ $(function () {
   var $header = $('body > .header');
   var $button = $('<a class="dropdown-item header-color-button">Header color</a>');
   var $picker = $('<div id="colorpicker-container"><div id="colorpicker"></div></div>');
+  var $unread = $('.notification-indicator .mail-status');
 
   var setHeaderColor = function (color) {
     console.debug('setHeaderColor');
     if (!color) { return; }
     $header.css({ backgroundColor: color });
+    $unread && $unread.css({ borderColor: color })
   };
 
   var saveHeaderColor = function (color) {
