@@ -1,18 +1,23 @@
 #colorpicker-container {
-  position: absolute;
+  display: none;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   margin: auto;
-  height: 300px;
-  width: 300px;
-  background-color: #ccc;
-  display: none;
-}
-
-#colorform {
+  height: 280px;
+  width: 280px;
+  background-color: #ffffff;
+  box-shadow: 0 0 2px 2px #ccc;
 }
 
 #colorpicker {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.farbtastic {
 }
