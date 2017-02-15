@@ -12,6 +12,15 @@
   box-shadow: 0 0 2px 2px #ccc;
 }
 
+#colorpicker-container > .close:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  cursor: pointer;
+  content: '☓';
+}
+
 #colorpicker {
   height: 100%;
   display: flex;

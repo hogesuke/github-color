@@ -1,8 +1,11 @@
 $(function () {
-  var $header = $('body > .header');
-  var $button = $('<a class="dropdown-item header-color-button">Header color</a>');
-  var $picker = $('<div id="colorpicker-container"><div id="colorpicker"></div></div>');
-  var $unread = $('.notification-indicator .mail-status');
+  var $header   = $('body > .header');
+  var $button   = $('<a class="dropdown-item header-color-button">Header color</a>');
+  var $picker   = $('<div id="colorpicker-container"><div id="colorpicker"></div></div>');
+  var $close    = $('<a class="close"></a>');
+  var $unread   = $('.notification-indicator .mail-status');
+  var $pulldown = $('.user-nav > li:last-child');
+  var $menu     = $pulldown.find('.dropdown-menu.dropdown-menu-sw');
 
   var setHeaderColor = function (color) {
     console.debug('setHeaderColor');
@@ -26,16 +29,19 @@ $(function () {
 
   var handleButtonClick = function () {
     $picker.toggle();
+    $pulldown.click();
   };
 
-  $('body').append($picker);
-  $('.user-nav > li:last-child .dropdown-menu.dropdown-menu-sw')
-    .append('<div class="dropdown-divider"></div>')
-    .append($button);
+  $('body').append($picker.prepend($close));
+  $menu.append('<div class="dropdown-divider"></div>').append($button);
   $(document).on('click', '.header-color-button', handleButtonClick);
 
   var initialColor = loadHeaderColor() || $header.css('backgroundColor');
 
   $.farbtastic('#colorpicker', colorChangeCallback).setColor(initialColor);
   setHeaderColor(initialColor);
+
+  $close.on('click', function () {
+    $picker.toggle();
+  });
 });
