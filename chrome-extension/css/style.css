@@ -16,9 +16,10 @@
   position: absolute;
   top: 0;
   right: 0;
-  padding: 5px;
+  padding: 5px 8px;
   cursor: pointer;
   content: '☓';
+  font-size: 14px;
 }
 
 #colorpicker {
@@ -28,5 +29,6 @@
   align-items: center;
 }
 
-.farbtastic {
+.header-color-button {
+  cursor: pointer;
 }
