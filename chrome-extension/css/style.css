@@ -22,6 +22,15 @@
   font-size: 14px;
 }
 
+#colorpicker-container > .default {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 5px 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
 #colorpicker {
   height: 100%;
   display: flex;
