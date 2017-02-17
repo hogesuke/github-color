@@ -4,7 +4,7 @@ GitHubのヘッダの色を変更できるChrome拡張です。
 
 ### 追加
 こちらより追加してください。
-- [Chrome ウェブストア - 拡張機能](https://chrome.google.com/webstore/detail/github-color/ippjlhfmdbcenfojogmjmaagoklobjcf)
+- [GitHub-Color - Chrome ウェブストア](https://chrome.google.com/webstore/detail/github-color/ippjlhfmdbcenfojogmjmaagoklobjcf)
 
 ### 使い方
 - ヘッダー右端のアバターをクリック
