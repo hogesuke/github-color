@@ -10,7 +10,6 @@ $(function () {
   var $menu     = $pulldown.find('.dropdown-menu.dropdown-menu-sw');
 
   var setHeaderColor = function (color) {
-    console.debug('setHeaderColor');
     if (!color) { return; }
     $header.css({ backgroundColor: color });
     $search.css({ borderRightColor: color });
