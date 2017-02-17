@@ -1,6 +1,6 @@
 github-color
 ===========
-GitHubのヘッダの色を変更するChrome拡張
+GitHubのヘッダの色を変更できるChrome拡張です。
 
 ### 追加
 こちらより追加してください。
