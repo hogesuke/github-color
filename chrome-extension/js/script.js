@@ -24,6 +24,7 @@ $(function () {
   };
 
   var colorChangeCallback = function (color) {
+    color = new RGBColor(color).toHex();
     setHeaderColor(color);
     saveHeaderColor(color);
   };
@@ -37,7 +38,7 @@ $(function () {
   $menu.append('<div class="dropdown-divider"></div>').append($button);
   $(document).on('click', '.header-color-button', handleButtonClick);
 
-  var defaultColor = $header.css('backgroundColor');
+  var defaultColor = new RGBColor($header.css('backgroundColor')).toHex();
   var initialColor = loadHeaderColor() || defaultColor;
   var picker = $.farbtastic('#colorpicker', colorChangeCallback);
 
@@ -49,7 +50,6 @@ $(function () {
   });
 
   $default.on('click', function () {
-    // todo rgbを16進数に変換する必要あり
     picker.setColor(defaultColor);
   });
 });
