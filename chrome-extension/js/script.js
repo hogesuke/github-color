@@ -1,5 +1,6 @@
 $(function () {
   var $header   = $('body .header');
+  var $search   = $header.find('.header-search-scope');
   var $button   = $('<a class="dropdown-item header-color-button">Header color</a>');
   var $picker   = $('<div id="colorpicker-container"><div id="colorpicker"></div></div>');
   var $close    = $('<a class="close"></a>');
@@ -12,6 +13,7 @@ $(function () {
     console.debug('setHeaderColor');
     if (!color) { return; }
     $header.css({ backgroundColor: color });
+    $search.css({ borderRightColor: color });
     $unread && $unread.css({ borderColor: color })
   };
 
