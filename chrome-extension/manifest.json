@@ -8,7 +8,7 @@
     "128": "img/icon128.png"
   },
   "permissions": [
-    "tabs"
+    "activeTab"
   ],
   "content_scripts": [
     {
