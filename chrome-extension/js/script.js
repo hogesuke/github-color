@@ -1,5 +1,5 @@
 $(function () {
-  var $header   = $('body .header');
+  var $header   = $('header');
   var $search   = $header.find('.header-search-scope');
   var $button   = $('<a class="dropdown-item header-color-button">Header color</a>');
   var $picker   = $('<div id="colorpicker-container"><div id="colorpicker"></div></div>');
