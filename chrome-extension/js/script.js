@@ -1,36 +1,40 @@
-$(function () {
-  var $header   = $('header');
-  var $search   = $header.find('.header-search-scope');
-  var $button   = $('<a class="dropdown-item header-color-button">Header color</a>');
-  var $picker   = $('<div id="colorpicker-container"><div id="colorpicker"></div></div>');
-  var $close    = $('<a class="close"></a>');
-  var $default  = $('<a class="default">もとに戻す</a>');
-  var $unread   = $('.notification-indicator .mail-status');
-  var $pulldown = $('.user-nav > li:last-child');
-  var $menu     = $pulldown.find('.dropdown-menu.dropdown-menu-sw');
+$(() => {
+  const $header   = $('header');
+  const $search   = $header.find('.header-search');
+  const $button   = $('<a class="dropdown-item header-color-button">Header color</a>');
+  const $picker   = $('<div id="colorpicker-container"><div id="colorpicker"></div></div>');
+  const $close    = $('<a class="close"></a>');
+  const $default  = $('<a class="default">もとに戻す</a>');
+  const $unread   = $('.notification-indicator .mail-status');
+  const $pulldown = $('.Header-item:last-child');
+  const $menu     = $pulldown.find('.dropdown-menu.dropdown-menu-sw');
 
-  var setHeaderColor = function (color) {
+  const setHeaderColor = color => {
     if (!color) { return; }
     $header.css({ backgroundColor: color });
     $search.css({ borderRightColor: color });
     $unread && $unread.css({ borderColor: color })
   };
 
-  var saveHeaderColor = function (color) {
+  const saveHeaderColor = color => {
     localStorage.setItem('chrome-extension::github-color::header-color', color);
   };
 
-  var loadHeaderColor = function () {
+  const loadHeaderColor = () => {
     return localStorage.getItem('chrome-extension::github-color::header-color');
   };
 
-  var colorChangeCallback = function (color) {
+  const getCurrentColor = () => {
+    return loadHeaderColor() || defaultColor;
+  };
+
+  const handleColorChange = color => {
     color = new RGBColor(color).toHex();
     setHeaderColor(color);
     saveHeaderColor(color);
   };
 
-  var handleButtonClick = function () {
+  const handleButtonClick = () => {
     $picker.toggle();
     $pulldown.click();
   };
@@ -39,18 +43,25 @@ $(function () {
   $menu.append('<div class="dropdown-divider"></div>').append($button);
   $(document).on('click', '.header-color-button', handleButtonClick);
 
-  var defaultColor = new RGBColor($header.css('backgroundColor')).toHex();
-  var initialColor = loadHeaderColor() || defaultColor;
-  var picker = $.farbtastic('#colorpicker', colorChangeCallback);
+  const defaultColor = new RGBColor($header.css('backgroundColor')).toHex();
+  const picker       = $.farbtastic('#colorpicker', handleColorChange);
 
-  picker.setColor(initialColor);
-  setHeaderColor(initialColor);
+  picker.setColor(getCurrentColor());
+  setHeaderColor(getCurrentColor());
 
-  $close.on('click', function () {
+  $close.on('click', () => {
     $picker.toggle();
   });
 
-  $default.on('click', function () {
+  $default.on('click', () => {
     picker.setColor(defaultColor);
+  });
+
+  const observer = new MutationObserver(() => {
+    setHeaderColor(getCurrentColor());
+  });
+
+  observer.observe($header[0], {
+    attributes: true
   });
 });
